@@ -8,6 +8,8 @@ import MenuItem from "../shared/MenuItem/MenuItem";
 import SectionHeading from "../../components/SectionHeading";
 import MenuCategory from "./MenuCategory/MenuCategory";
 import pizzaBg from '../../assets/menu/pizza-bg.jpg'
+import saladbg from '../../assets/menu/salad-bg.jpg'
+import soupdbg from '../../assets/menu/soup-bg.jpg'
 
 const Menu = () => {
   const [menu] = useMenu();
@@ -46,6 +48,13 @@ const Menu = () => {
 
       {/* Pizza Again */}
       <MenuCategory items={pizza} title={'Special Pizza using critical'} coverImage={pizzaBg}></MenuCategory>
+
+      {/* Salad */}
+      <MenuCategory items={salad} title={'Salad Items'} coverImage={saladbg} ></MenuCategory>
+
+      {/* Soup */}
+      <MenuCategory items={soup} title={'Soup Items'} coverImage={soupdbg} ></MenuCategory>
+
     </div>
   );
 };
