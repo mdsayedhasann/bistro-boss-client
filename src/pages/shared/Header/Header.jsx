@@ -10,6 +10,9 @@ const Header = () => {
      <li>
        <NavLink to='/menu'>Menu</NavLink>
      </li>
+     <li>
+       <NavLink to='/order'>Order</NavLink>
+     </li>
     </>
   );
   return (
@@ -39,7 +42,7 @@ const Header = () => {
             {navlinks}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <a className="btn btn-ghost text-xl">Bistro Boss</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
