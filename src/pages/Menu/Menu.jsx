@@ -47,13 +47,13 @@ const Menu = () => {
       ></SectionHeading>
 
       {/* Pizza Again */}
-      <MenuCategory items={pizza} title={'Special Pizza using critical'} coverImage={pizzaBg}></MenuCategory>
+      <MenuCategory items={pizza} title={'pizza'} coverImage={pizzaBg}></MenuCategory>
 
       {/* Salad */}
-      <MenuCategory items={salad} title={'Salad Items'} coverImage={saladbg} ></MenuCategory>
+      <MenuCategory items={salad} title={'salad'} coverImage={saladbg} ></MenuCategory>
 
       {/* Soup */}
-      <MenuCategory items={soup} title={'Soup Items'} coverImage={soupdbg} ></MenuCategory>
+      <MenuCategory items={soup} title={'soup'} coverImage={soupdbg} ></MenuCategory>
 
     </div>
   );
