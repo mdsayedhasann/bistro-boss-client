@@ -1,37 +1,45 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import { FaCartShopping } from "react-icons/fa6";
+
 
 
 const Header = () => {
-  const {user, logOut} = useContext(AuthContext)
+  const { user, logOut } = useContext(AuthContext);
 
   const handleLogout = () => {
     logOut()
-    .then(user => {
-      console.log('logout', user);
-    })
-    .catch(error => {
-      console.error(error);
-    })
-  }
+      .then((user) => {
+        console.log("logout", user);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   const navlinks = (
     <>
-     <li>
-       <NavLink to='/'>Home</NavLink>
-     </li>
-     <li>
-       <NavLink to='/menu'>Menu</NavLink>
-     </li>
-     <li>
-       <NavLink to='/order'>Order</NavLink>
-     </li>
-     <li>
-       <NavLink to='/login'>Login</NavLink>
-     </li>
-     <li>
-       <NavLink to='/secret'>Secret</NavLink>
-     </li>
+      <li>
+        <NavLink to="/">Home</NavLink>
+      </li>
+      <li>
+        <NavLink to="/menu">Menu</NavLink>
+      </li>
+      <li>
+        <NavLink to="/order">Order</NavLink>
+      </li>
+      <li>
+        <NavLink to="/login">Login</NavLink>
+      </li>
+      <li>
+        <NavLink to="/secret">Secret</NavLink>
+      </li>
+      <li>
+        <button className="">
+        <FaCartShopping />
+          <div className="badge badge-secondary">+0</div>
+        </button>
+      </li>
     </>
   );
   return (
@@ -64,24 +72,16 @@ const Header = () => {
         <a className="btn btn-ghost text-xl">Bistro Boss</a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-        
-          {navlinks}
-        </ul>
+        <ul className="menu menu-horizontal px-1">{navlinks}</ul>
       </div>
       <div className="navbar-end">
-        {
-          user ? (
-            <button onClick={handleLogout} className="btn">
+        {user ? (
+          <button onClick={handleLogout} className="btn">
             Logout
           </button>
-          ) : (
-            <button className="btn">
-            Login
-          </button>
-          )
-        }
-       
+        ) : (
+          <button className="btn">Login</button>
+        )}
       </div>
     </div>
   );
