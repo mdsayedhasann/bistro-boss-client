@@ -3,6 +3,8 @@ import SectionHeading from "../../components/SectionHeading";
 import Cover from "../shared/Cover/Cover";
 import loginImgBg from "../../assets/others/Illustration.svg";
 import loginImg from "../../assets/others/authentication2.png";
+import Swal from 'sweetalert2'
+
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
@@ -30,6 +32,11 @@ const Login = () => {
     .then(result => {
       const user = result.user
       console.log(user.email);
+      Swal.fire({
+        title: "Login Success",
+        icon: "success"
+      });
+      form.reset()
     })
     .catch(error => {
       console.error(error);

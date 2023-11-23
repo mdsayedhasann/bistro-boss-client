@@ -1,14 +1,42 @@
 import React from "react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form"
+import { AuthContext } from "../../Provider/AuthProvider";
+import Swal from 'sweetalert2'
 
 const SignUp = () => {
     const {
         register,
         handleSubmit,
+        reset,
         watch,
         formState: { errors },
       } = useForm()
-      const onSubmit = (data) => console.log(data)
+
+      const {createUser, updateUserProfile} = useContext(AuthContext)
+
+      const onSubmit = (data) => {
+          createUser(data.email, data.password)
+          .then(result => {
+              const loggedUser = result.user
+              console.log(loggedUser);
+              updateUserProfile(data.displayName, data.photoURL)
+              .then(() => {
+                reset
+                Swal.fire({
+                    title: "User Registration Success",
+                    icon: "success"
+                  });
+              })
+              .catch(error => {
+                  console.error(error);
+              })
+          })
+          .catch(error => {
+              console.error(error);
+          })
+          console.log(data)
+        }
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -38,6 +66,19 @@ const SignUp = () => {
             </div>
             <div className="form-control">
               <label className="label">
+                <span className="label-text">Photo Url</span>
+              </label>
+              <input
+               {...register("photoURL", { required: true })}
+                type="text"
+                placeholder="Enter Your Photo Url"
+                className="input input-bordered"
+                
+              /> {errors.photoURL && <span className="text-red-600">This field is required</span>}
+              
+            </div>
+            <div className="form-control">
+              <label className="label">
                 <span className="label-text">Email</span>
               </label>
               <input
@@ -54,13 +95,19 @@ const SignUp = () => {
                 <span className="label-text">Password</span>
               </label>
               <input
-              {...register("password")}
+              {...register("password", { required: true, maxLength: 20, minLength: 6,  
+                pattern: /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/})}
                 type="password"
                 name="password"
                 placeholder="password"
                 className="input input-bordered"
-                required
+                
               />
+              {errors.password?.type === 'required' && <span className="text-red-600">This field is required</span>}
+              {errors.password?.type === 'minLength' && <span className="text-red-600">Password must be at least 6 charecter</span>}
+              {errors.password?.type === 'maxLength' && <span className="text-red-600">Password can't be more than 20 charecter</span>}
+              {errors.password?.type === 'pattern' && <span className="text-red-600">A capital & a small Letter and a Number and a special charecter is required</span>}
+              
               <label className="label">
                 <a href="#" className="label-text-alt link link-hover">
                   Forgot password?
