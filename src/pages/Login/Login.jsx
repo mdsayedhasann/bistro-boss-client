@@ -4,6 +4,7 @@ import Cover from "../shared/Cover/Cover";
 import loginImgBg from "../../assets/others/Illustration.svg";
 import loginImg from "../../assets/others/authentication2.png";
 import Swal from 'sweetalert2'
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import {
   loadCaptchaEnginge,
@@ -19,6 +20,9 @@ import { Link } from "react-router-dom";
 const Login = () => {
   const [disabled, setDisabled] = useState(true)
   const {loginUser} = useContext(AuthContext)
+  const location = useLocation()
+  const navigate = useNavigate()
+  const from = location.state?.from?.pathname || '/' ;
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, [[]]);
@@ -36,6 +40,7 @@ const Login = () => {
         title: "Login Success",
         icon: "success"
       });
+      navigate(from, {replace: true})
       form.reset()
     })
     .catch(error => {
