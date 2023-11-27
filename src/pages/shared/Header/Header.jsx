@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { FaCartShopping } from "react-icons/fa6";
 import useCart from "../../../hooks/useCart";
@@ -37,10 +37,12 @@ const Header = () => {
         <NavLink to="/secret">Secret</NavLink>
       </li>
       <li>
+        <Link to='/dashboard/cart'>
         <button className="">
         <FaCartShopping />
-          <div className="badge badge-secondary">+{cart.length}</div>
+          <div className="badge badge-secondary">+0</div>
         </button>
+        </Link>
       </li>
     </>
   );

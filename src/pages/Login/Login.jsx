@@ -16,6 +16,7 @@ import { useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Link } from "react-router-dom";
+import SocialLogin from "../shared/SocialLogin/SocialLogin";
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true)
@@ -129,6 +130,9 @@ const Login = () => {
                 />
               </div>
             </form>
+            <div className="flex justify-center my-5">
+              <SocialLogin></SocialLogin>
+            </div>
             <p className="text-center mb-6">
               <small>
                 New Here? <Link to='/signup'><span className="text-yellow-600">Create an Account</span></Link>
